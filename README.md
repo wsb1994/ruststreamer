@@ -25,8 +25,6 @@ CONFIG_DIRECTORY = "/Users/yourusername/YourProject/src/config.toml"
 
 Use the script below to ensure GStreamer is properly installed and functioning. If the script does not run, the code is unlikely to work:
 
-sh
-Copy code
 GST_DEBUG=2 gst-launch-1.0 -e v4l2src device=/dev/video0 ! videoconvert ! x265enc bitrate=5000 speed-preset=superfast ! "video/x-h265,stream-format=(string)byte-stream,profile=(string)main" ! h265parse ! matroskamux ! filesink location=output.mkv
 
 4. navigate to the root directory of the project and run cargo build. It should build for sure on macosx. If not it may be an issue with gstreamer or the plugin you're using to stream from the webcam.
