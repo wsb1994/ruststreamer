@@ -17,7 +17,7 @@ For the original script modified to work on macOS, use v4l2src.
 
 2. Set the Configuration Directory:
 
-Set the CONFIG_DIRECTORY constant to the full path of your config.toml file. Example:
+Set the CONFIG_DIRECTORY constant at the top of main.rs to the full path of your config.toml file. Example:
 
 CONFIG_DIRECTORY = "/Users/yourusername/YourProject/src/config.toml"
 
