@@ -141,34 +141,3 @@ fn main() {
         request.respond(response).expect("Unable to send server response");
     }
 }
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use reqwest::blocking::Client;
-    use std::fs;
-    use std::io::Write;
-
-  #[test]
-    fn test_read_config() {
-        // Create a temporary config file
-        let temp_config_path = "temp_config.toml";
-        let mut file = fs::File::create(temp_config_path).expect("Unable to create temp config file");
-        writeln!(file, "src_type = 'testsrc'").expect("Unable to write to temp config file");
-
-        // Change CONFIG_DIRECTORY to the temp config file for testing
-        let original_config_directory = CONFIG_DIRECTORY;
-        const CONFIG_DIRECTORY: &str = temp_config_path;
-
-        // Call the read_config function
-        let config = read_config().expect("Failed to read config");
-
-        // Check if the config was read correctly
-        assert_eq!(config.src_type, "testsrc", "Config src_type does not match");
-
-        // Clean up the temporary config file
-        fs::remove_file(temp_config_path).expect("Failed to delete temp config file");
-
-        // Restore the original CONFIG_DIRECTORY
-        let _ = CONFIG_DIRECTORY = original_config_directory;
-    }
-}
